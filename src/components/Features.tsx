@@ -34,7 +34,7 @@ export function Features() {
   return (
     <section
       id="architecture"
-      className="mx-auto max-w-6xl px-6 py-20 sm:px-10"
+      className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 md:px-10 md:py-20"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -42,15 +42,15 @@ export function Features() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-2xl font-semibold text-white sm:text-3xl">
+        <h2 className="text-xl font-semibold text-white sm:text-2xl md:text-3xl">
           The Architecture of Autonomy
         </h2>
-        <p className="mt-3 max-w-2xl text-neutral-300">
+        <p className="mt-2 max-w-2xl text-sm text-neutral-300 sm:mt-3 sm:text-base">
           A modular stack designed for connected intelligence.
         </p>
       </motion.div>
 
-      <div className="mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-10 md:gap-6">
         {items.map((it, idx) => (
           <motion.div
             key={it.title}
@@ -60,7 +60,7 @@ export function Features() {
             transition={{ delay: idx * 0.1, duration: 0.5 }}
           >
             <MagicCard
-              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/50 p-6 cursor-pointer transition-all hover:scale-[1.02]"
+              className="group relative overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/50 p-4 cursor-pointer transition-all hover:scale-[1.02] sm:p-6"
               gradientFrom="#9E7AFF"
               gradientTo="#FE8BBB"
               gradientSize={300}
@@ -74,13 +74,13 @@ export function Features() {
 
               {/* Content */}
               <div className="relative z-10">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm">
-                  <it.icon className="h-6 w-6 text-violet-400" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm sm:h-12 sm:w-12">
+                  <it.icon className="h-5 w-5 text-violet-400 sm:h-6 sm:w-6" />
                 </div>
-                <h3 className="mt-4 text-xl font-semibold text-white">
+                <h3 className="mt-3 text-lg font-semibold text-white sm:mt-4 sm:text-xl">
                   {it.title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-neutral-300">
+                <p className="mt-2 text-xs leading-relaxed text-neutral-300 sm:text-sm">
                   {it.desc}
                 </p>
               </div>

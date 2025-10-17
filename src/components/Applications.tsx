@@ -34,7 +34,7 @@ export function Applications() {
   return (
     <section
       id="apps"
-      className="relative mx-auto max-w-6xl px-6 py-20 sm:px-10"
+      className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 md:px-10 md:py-20"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -42,15 +42,15 @@ export function Applications() {
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <h2 className="text-2xl font-semibold text-white sm:text-3xl">
+        <h2 className="text-xl font-semibold text-white sm:text-2xl md:text-3xl">
           Endless Possibilities
         </h2>
-        <p className="mt-3 max-w-2xl bg-gradient-to-r from-neutral-200 to-neutral-400 bg-clip-text text-transparent">
+        <p className="mt-2 max-w-2xl bg-gradient-to-r from-neutral-200 to-neutral-400 bg-clip-text text-sm text-transparent sm:mt-3 sm:text-base">
           One intelligence fabric. Many expressions.
         </p>
       </motion.div>
 
-      <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
+      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-12 md:gap-6">
         {apps.map((a, i) => (
           <motion.div
             key={a.title}
@@ -58,7 +58,7 @@ export function Applications() {
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ delay: 0.1 * i, duration: 0.5 }}
-            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/60 p-6 backdrop-blur-sm transition-all hover:border-white/20 hover:scale-[1.02] "
+            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/60 p-4 backdrop-blur-sm transition-all hover:border-white/20 hover:scale-[1.02] sm:p-6"
           >
             {/* Meteor shower effect on hover */}
             <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
@@ -82,19 +82,19 @@ export function Applications() {
             {/* Content */}
             <div className="relative z-10">
               <div
-                className={`inline-flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${a.color} shadow-lg`}
+                className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${a.color} shadow-lg sm:h-14 sm:w-14`}
               >
-                <a.icon className="h-7 w-7 text-white" />
+                <a.icon className="h-6 w-6 text-white sm:h-7 sm:w-7" />
               </div>
-              <h3 className="mt-4 text-xl font-semibold text-white">
+              <h3 className="mt-3 text-lg font-semibold text-white sm:mt-4 sm:text-xl">
                 {a.title}
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-neutral-300">
+              <p className="mt-2 text-xs leading-relaxed text-neutral-300 sm:text-sm">
                 {a.desc}
               </p>
 
               {/* Hover indicator */}
-              <div className="mt-4 flex items-center text-xs font-medium text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity">
+              <div className="mt-3 flex items-center text-xs font-medium text-violet-400 opacity-0 transition-opacity group-hover:opacity-100 sm:mt-4">
                 <span>Explore</span>
                 <svg
                   className="ml-1 h-3 w-3"

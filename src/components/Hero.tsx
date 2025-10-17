@@ -12,7 +12,7 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="relative mx-auto mt-28 max-w-6xl overflow-hidden rounded-3xl border border-white/10 bg-neutral-950 px-6 py-24 sm:px-10"
+      className="relative mx-4 mt-24 max-w-6xl overflow-hidden rounded-3xl border border-white/10 bg-neutral-950 px-4 py-16 sm:mx-6 sm:px-8 md:mt-28 md:px-10 md:py-24 lg:mx-auto"
     >
       {/* Animated Grid Background */}
       <AnimatedGridPattern
@@ -44,7 +44,7 @@ export function Hero() {
         <TextAnimate
           animation="blurInUp"
           by="word"
-          className="text-balance text-4xl font-semibold leading-tight text-white sm:text-6xl"
+          className="text-balance text-3xl font-semibold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl"
           once
         >
           Intelligence, Interconnected.
@@ -54,7 +54,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
-          className="mx-auto mt-6 max-w-xl text-pretty text-neutral-300"
+          className="mx-auto mt-4 max-w-xl text-pretty text-sm text-neutral-300 sm:mt-6 sm:text-base md:text-lg"
         >
           MindMesh is building the foundation for a world where agents think,
           act, and evolve — together.
@@ -64,17 +64,17 @@ export function Hero() {
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.6 }}
-          className="mt-10 flex items-center justify-center gap-3"
+          className="mt-6 flex flex-col items-center justify-center gap-3 sm:mt-8 sm:flex-row md:mt-10"
         >
           <a
             href="#waitlist"
-            className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl bg-gradient-to-r from-violet-500 to-cyan-500 px-6 py-3 text-sm font-medium text-white shadow-lg transition-all hover:scale-105 hover:shadow-violet-500/50"
+            className="group relative inline-flex items-center justify-center overflow-hidden rounded-xl bg-white px-6 py-3 text-sm font-medium text-black shadow-lg transition-all hover:scale-105 hover:shadow-white/30"
           >
             <span className="relative">Join the Waitlist</span>
           </a>
           <a
             href="#vision"
-            className="rounded-xl border border-white/20 px-6 py-3 text-sm text-white backdrop-blur transition hover:bg-white/10"
+            className="rounded-xl border border-white/20 px-6 py-3 text-center text-sm text-white backdrop-blur transition hover:bg-white/10"
           >
             Read the Vision
           </a>
@@ -84,7 +84,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
-          className="mt-12 flex items-center justify-center gap-2 text-sm text-neutral-400"
+          className="mt-8 flex flex-wrap items-center justify-center gap-2 text-xs text-neutral-400 sm:text-sm md:mt-12"
           aria-hidden="true"
         >
           <span>Agentic</span>
@@ -101,7 +101,7 @@ export function Hero() {
                   stiffness: 300,
                   damping: 20,
                 }}
-                className="mx-2"
+                className="mx-1 sm:mx-2"
               >
                 {w}
               </motion.span>

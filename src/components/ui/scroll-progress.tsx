@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, MotionProps, useScroll } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion, MotionProps, useScroll, useSpring } from "framer-motion";
 
 import { cn } from "@/lib/utils";
 
@@ -16,6 +17,13 @@ export function ScrollProgress({
 }: ScrollProgressProps) {
   const { scrollYProgress } = useScroll();
 
+  // Add smooth spring animation to match Lenis
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
   return (
     <motion.div
       ref={ref}
@@ -24,7 +32,7 @@ export function ScrollProgress({
         className
       )}
       style={{
-        scaleX: scrollYProgress,
+        scaleX,
       }}
       {...props}
     />
