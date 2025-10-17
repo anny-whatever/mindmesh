@@ -20,8 +20,19 @@ const navItems: NavItem[] = [
   { name: "Waitlist", href: "#waitlist", icon: <Sparkles size={18} /> },
 ];
 
+const smoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+  e.preventDefault();
+  if (href === "#home") {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  } else {
+    const target = document.querySelector(href);
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }
+};
+
 export function Navbar({ className }: { className?: string }) {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -37,63 +48,18 @@ export function Navbar({ className }: { className?: string }) {
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="relative rounded-2xl border border-white/10 bg-neutral-900/70 p-2 shadow-2xl backdrop-blur-xl"
+          className="rounded-full border border-white/10 bg-neutral-900/80 px-2 py-1.5 shadow-lg backdrop-blur-xl"
         >
-          {/* Glow effect */}
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-violet-500/20 to-cyan-500/20 opacity-0 blur-xl transition-opacity group-hover:opacity-100" />
-
-          <ul className="relative flex items-center gap-1">
-            {navItems.map((item, idx) => (
+          <ul className="flex items-center gap-1">
+            {navItems.map((item) => (
               <li key={item.name}>
-                <motion.a
+                <a
                   href={item.href}
-                  className="group relative inline-flex items-center gap-2 rounded-xl px-4 py-2 text-sm text-neutral-200 transition-colors"
-                  onMouseEnter={() => setHoveredIndex(idx)}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                  whileHover={{ scale: 1.08 }}
-                  whileTap={{ scale: 0.96 }}
+                  onClick={(e) => smoothScroll(e, item.href)}
+                  className="group relative inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-neutral-300 transition-colors hover:bg-white/10 hover:text-white"
                 >
-                  {/* Hover background */}
-                  <AnimatePresence>
-                    {hoveredIndex === idx && (
-                      <motion.span
-                        layoutId="hoverBackground"
-                        className="absolute inset-0 rounded-xl bg-gradient-to-r from-violet-500/20 to-cyan-500/20 backdrop-blur-sm"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.15 }}
-                      />
-                    )}
-                  </AnimatePresence>
-
-                  {/* Icon */}
-                  <motion.span
-                    className="relative grid place-items-center rounded-md bg-white/10 p-1.5"
-                    animate={{
-                      rotate: hoveredIndex === idx ? [0, -10, 10, -10, 0] : 0,
-                    }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    {item.icon}
-                  </motion.span>
-
-                  {/* Label */}
-                  <span className="relative font-medium opacity-75 transition group-hover:opacity-100">
-                    {item.name}
-                  </span>
-
-                  {/* Active indicator dot */}
-                  {hoveredIndex === idx && (
-                    <motion.span
-                      layoutId="activeIndicator"
-                      className="absolute -bottom-1 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-gradient-to-r from-violet-400 to-cyan-400"
-                      initial={{ scale: 0 }}
-                      animate={{ scale: 1 }}
-                      exit={{ scale: 0 }}
-                    />
-                  )}
-                </motion.a>
+                  <span className="relative font-medium">{item.name}</span>
+                </a>
               </li>
             ))}
           </ul>
@@ -106,14 +72,20 @@ export function Navbar({ className }: { className?: string }) {
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mx-4 mt-4 rounded-2xl border border-white/10 bg-neutral-900/90 p-4 backdrop-blur-xl"
+          className="mx-4 mt-4 rounded-xl border border-white/10 bg-neutral-900/90 px-4 py-3 backdrop-blur-xl"
         >
           <div className="flex items-center justify-between">
-            <a href="#home" className="flex items-center gap-2">
-              <div className="rounded-lg bg-gradient-to-r from-violet-500 to-cyan-500 p-2">
-                <Hexagon size={20} className="text-white" />
+            <a
+              href="#home"
+              onClick={(e) => smoothScroll(e, "#home")}
+              className="flex items-center gap-2"
+            >
+              <div className="rounded-lg bg-gradient-to-r from-violet-500 to-cyan-500 p-1.5">
+                <Hexagon size={18} className="text-white" />
               </div>
-              <span className="text-lg font-semibold text-white">MindMesh</span>
+              <span className="text-base font-semibold text-white">
+                MindMesh
+              </span>
             </a>
 
             <button
@@ -121,7 +93,7 @@ export function Navbar({ className }: { className?: string }) {
               className="rounded-lg bg-white/10 p-2 text-white transition-colors hover:bg-white/20"
               aria-label="Toggle menu"
             >
-              {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
             </button>
           </div>
 
@@ -132,7 +104,7 @@ export function Navbar({ className }: { className?: string }) {
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.3 }}
-                className="mt-4 space-y-2 overflow-hidden"
+                className="mt-3 space-y-1 overflow-hidden"
               >
                 {navItems.map((item) => (
                   <motion.li
@@ -143,12 +115,12 @@ export function Navbar({ className }: { className?: string }) {
                   >
                     <a
                       href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="flex items-center gap-3 rounded-lg bg-white/5 p-3 text-neutral-200 transition-colors hover:bg-white/10"
+                      onClick={(e) => {
+                        smoothScroll(e, item.href);
+                        setMobileMenuOpen(false);
+                      }}
+                      className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm text-neutral-200 transition-colors hover:bg-white/10"
                     >
-                      <span className="rounded-md bg-white/10 p-2">
-                        {item.icon}
-                      </span>
                       <span className="font-medium">{item.name}</span>
                     </a>
                   </motion.li>
