@@ -48,17 +48,20 @@ export function Navbar({ className }: { className?: string }) {
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="rounded-full border border-white/10 bg-neutral-900/80 px-2 py-1.5 shadow-lg backdrop-blur-xl"
+          className="rounded-full border border-white/10 bg-neutral-900/60 px-4 py-2 shadow-2xl backdrop-blur-md supports-[backdrop-filter]:bg-neutral-900/40"
         >
-          <ul className="flex items-center gap-1">
+          <ul className="flex items-center gap-2">
             {navItems.map((item) => (
               <li key={item.name}>
                 <a
                   href={item.href}
                   onClick={(e) => smoothScroll(e, item.href)}
-                  className="group relative inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm text-neutral-300 transition-colors hover:bg-white/10 hover:text-white"
+                  className="group relative inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-neutral-400 transition-all hover:bg-white/10 hover:text-white"
                 >
-                  <span className="relative font-medium">{item.name}</span>
+                  <span className="relative">{item.name}</span>
+                  {item.name === "Waitlist" && (
+                    <span className="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-violet-600/20 to-cyan-600/20 opacity-0 transition-opacity group-hover:opacity-100" />
+                  )}
                 </a>
               </li>
             ))}

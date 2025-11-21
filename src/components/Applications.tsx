@@ -1,32 +1,35 @@
 import { motion } from "framer-motion";
-import { Meteors } from "./ui/meteors";
-import { Ripple } from "./ui/ripple";
-import { Sparkles, Zap, Palette, User } from "lucide-react";
+import { MagicCard } from "./ui/magic-card";
+import { Sparkles, Zap, Palette, User, ArrowUpRight } from "lucide-react";
 
 const apps = [
   {
     title: "Enterprise Autonomy",
-    desc: "Orchestrate workflows through adaptive AI agents.",
+    desc: "Orchestrate complex workflows through adaptive AI agents that learn and optimize over time.",
     icon: Sparkles,
-    color: "from-violet-500 to-purple-600",
+    gradientFrom: "#8B5CF6",
+    gradientTo: "#A78BFA",
   },
   {
     title: "Research Acceleration",
-    desc: "Reasoning clusters that learn from your data.",
+    desc: "Deploy reasoning clusters that analyze vast datasets, formulate hypotheses, and generate insights.",
     icon: Zap,
-    color: "from-cyan-500 to-blue-600",
+    gradientFrom: "#06B6D4",
+    gradientTo: "#22D3EE",
   },
   {
     title: "Creative Systems",
-    desc: "Agents that compose, design, and prototype together.",
+    desc: "Collaborate with agents that can compose music, design interfaces, and prototype 3D models.",
     icon: Palette,
-    color: "from-pink-500 to-rose-600",
+    gradientFrom: "#EC4899",
+    gradientTo: "#F472B6",
   },
   {
     title: "Personal Assistants",
-    desc: "Your digital self — built on the same fabric.",
+    desc: "Your digital self — a personalized agent built on the same fabric to handle your digital life.",
     icon: User,
-    color: "from-emerald-500 to-teal-600",
+    gradientFrom: "#10B981",
+    gradientTo: "#34D399",
   },
 ];
 
@@ -34,83 +37,65 @@ export function Applications() {
   return (
     <section
       id="apps"
-      className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 md:px-10 md:py-20"
+      className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8"
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
+        className="mb-12 flex flex-col items-start justify-between gap-4 md:flex-row md:items-end"
       >
-        <h2 className="text-xl font-semibold text-white sm:text-2xl md:text-3xl">
-          Endless Possibilities
-        </h2>
-        <p className="mt-2 max-w-2xl bg-gradient-to-r from-neutral-200 to-neutral-400 bg-clip-text text-sm text-transparent sm:mt-3 sm:text-base">
-          One intelligence fabric. Many expressions.
-        </p>
+        <div>
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
+            Endless Possibilities
+          </h2>
+          <p className="mt-4 max-w-xl text-lg text-neutral-400">
+            One intelligence fabric. Many expressions. From enterprise automation to creative exploration.
+          </p>
+        </div>
+        <a
+          href="#"
+          className="group flex items-center gap-2 text-sm font-medium text-violet-400 transition-colors hover:text-violet-300"
+        >
+          View all use cases
+          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+        </a>
       </motion.div>
 
-      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-12 md:gap-6">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {apps.map((a, i) => (
           <motion.div
             key={a.title}
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ delay: 0.1 * i, duration: 0.5 }}
-            className="group relative overflow-hidden rounded-2xl border border-white/10 bg-neutral-900/60 p-4 backdrop-blur-sm transition-all hover:border-white/20 hover:scale-[1.02] sm:p-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1, duration: 0.5 }}
+            className="h-full"
           >
-            {/* Meteor shower effect on hover */}
-            <div className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-              <Meteors
-                number={8}
-                minDelay={0}
-                maxDelay={0.5}
-                minDuration={1}
-                maxDuration={3}
-              />
-            </div>
-
-            {/* Ripple effect */}
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 duration-500">
-              <Ripple mainCircleSize={100} numCircles={3} />
-            </div>
-
-            {/* Gradient orb */}
-            <div className="absolute -right-16 -top-16 h-32 w-32 rounded-full bg-gradient-to-br from-violet-500/20 via-cyan-400/20 to-transparent blur-3xl" />
-
-            {/* Content */}
-            <div className="relative z-10">
-              <div
-                className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${a.color} shadow-lg sm:h-14 sm:w-14`}
-              >
-                <a.icon className="h-6 w-6 text-white sm:h-7 sm:w-7" />
+            <MagicCard
+              className="flex h-full flex-col justify-between border border-white/10 bg-neutral-900/50 p-6 sm:p-8"
+              gradientFrom={a.gradientFrom}
+              gradientTo={a.gradientTo}
+              gradientSize={300}
+              gradientOpacity={0.15}
+            >
+              <div>
+                <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/5">
+                  <a.icon className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="mb-2 text-xl font-semibold text-white">
+                  {a.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-neutral-400">
+                  {a.desc}
+                </p>
               </div>
-              <h3 className="mt-3 text-lg font-semibold text-white sm:mt-4 sm:text-xl">
-                {a.title}
-              </h3>
-              <p className="mt-2 text-xs leading-relaxed text-neutral-300 sm:text-sm">
-                {a.desc}
-              </p>
 
-              {/* Hover indicator */}
-              <div className="mt-3 flex items-center text-xs font-medium text-violet-400 opacity-0 transition-opacity group-hover:opacity-100 sm:mt-4">
-                <span>Explore</span>
-                <svg
-                  className="ml-1 h-3 w-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
+              <div className="mt-6 flex items-center text-sm font-medium text-white opacity-0 transition-opacity group-hover:opacity-100">
+                Learn more <ArrowUpRight className="ml-1 h-3 w-3" />
               </div>
-            </div>
+            </MagicCard>
           </motion.div>
         ))}
       </div>
